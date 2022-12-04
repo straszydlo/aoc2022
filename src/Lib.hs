@@ -8,7 +8,7 @@ import qualified Data.Set as Set
 type Range = Set Int
 
 total :: [(Range, Range)] -> Int
-total = count (uncurry eitherContainsOther)
+total = count (\(r1, r2) -> not . null $ Set.intersection r1 r2)
 
 eitherContainsOther :: Range -> Range -> Bool
 eitherContainsOther r1 r2 = r1 `isSubsetOf` r2 || r2 `isSubsetOf` r1
